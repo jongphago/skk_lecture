@@ -36,7 +36,7 @@ col1, col2 = st.columns([1, 1])
 frame_placeholder = col1.empty()
 top_placeholder = col2.empty()
 top_img_path = "vision_web_app/images/ca_camera_7_top.png"
-_top_image = cv2.imread(top_img_path)
+_top_image = cv2.cvtColor(cv2.imread(top_img_path), cv2.COLOR_BGR2RGB)
 
 while cap.isOpened():
     # Read the frame
@@ -44,7 +44,7 @@ while cap.isOpened():
     if not ret:
         break
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    top_image = cv2.cvtColor(_top_image, cv2.COLOR_BGR2RGB).copy()
+    top_image = _top_image.copy()
 
     # Perform object detection and tracking
     results = model.track(frame, persist=True, verbose=False)
@@ -53,7 +53,7 @@ while cap.isOpened():
         continue
 
     # Initialize the Annotator
-    annotator = Annotator(frame, line_width=5)
+    annotator = Annotator(frame, line_width=2)
     annotator_top = Annotator(top_image, line_width=10)
     for box, cls, track_id, cxby in zip(*get_track_results(result)):
         # Initialize
@@ -75,7 +75,7 @@ while cap.isOpened():
 
         # Visualize the results on the frame (perspective)
         annotator.box_label(box, color=color, label=label)
-        annotator.draw_centroid_and_tracks(track, color, 6)
+        annotator.draw_centroid_and_tracks(track, color, 2)
 
         # Visualize the results on the top image (top)
         annotator_top.text(warped, label, color)

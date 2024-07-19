@@ -14,6 +14,7 @@ def get_cheonahn_camera_url(camera_index: int) -> str:
 def perspective_transform(bm, homography):
     bmx, bmy = bm  # bottom-mid
     cam_point = np.array([[[bmx, bmy]]], dtype=np.float32)
+    cam_point *= 3  # Resolution change from 1920x1080 to 640x360
     map_point = cv2.perspectiveTransform(cam_point, homography)
     world_x, world_y = map_point[0][0]
     return (int(world_x), int(world_y))
