@@ -15,8 +15,8 @@ pts_dict = {
 }
 
 img_dict = {
-    "perspective": "vision_web_app/images/ca_camera_7_pers.png",
-    "top": "vision_web_app/images/ca_camera_7_top.png",
+    "perspective": "vision_web_app/images/ca_camera_7_pers.jpg",
+    "top": "vision_web_app/images/_ca_camera_7_top.png",
 }
 
 view = sys.argv[1]

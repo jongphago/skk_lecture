@@ -30,7 +30,15 @@ class PointSelector:
 
 
 if __name__ == "__main__":
-    image_path = input("Enter the path to the image file: ")
-    point_selector = PointSelector(image_path)
-    points = point_selector.get_points()
-    print("Selected points:", points)
+    view = "perspective"[:4]
+    image_path = f"vision_web_app/images/ca_camera_7_{view}.jpg"
+    perspective_view_point_selector = PointSelector(image_path)
+    pers_points = perspective_view_point_selector.get_points()
+
+    view = "top"
+    image_path = f"vision_web_app/images/_ca_camera_7_{view}.png"
+    top_view_point_selector = PointSelector(image_path)
+    top_points = top_view_point_selector.get_points()
+
+    print("ca_camera_7_pers_pts = ", pers_points)
+    print("ca_camera_7_top_pts = ", top_points)
