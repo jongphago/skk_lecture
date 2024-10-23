@@ -269,7 +269,7 @@ class Model(threading.Thread):
 @timer
 def send(
     frames: list[np.ndarray],
-    url: str = "http://34.64.235.71:8000/image_files/",
+    url: str = "http://34.47.64.171:8000/image_files/",
 ):
     def array2bytes(frame: np.ndarray, format: str = ".jpg") -> bytes:
         _, encoded = cv2.imencode(format, frame)
